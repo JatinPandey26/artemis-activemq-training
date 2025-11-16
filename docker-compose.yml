@@ -1,0 +1,18 @@
+version: "3.8"
+
+services:
+  artemis1:
+    build: .
+    container_name: artemis_container
+    hostname: artemis_container
+    ports:
+      - "61616:61616"
+      - "61617:61617"
+      - "8161:8161"
+      - "1099:1099"
+      - "1100:1100"
+    volumes:
+      - ./broker:/opt/artemis/broker
+    environment:
+      - ARTEMIS_USERNAME=admin
+      - ARTEMIS_PASSWORD=admin
