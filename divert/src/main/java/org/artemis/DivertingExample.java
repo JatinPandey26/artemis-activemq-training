@@ -79,14 +79,9 @@ public class DivertingExample
         console.name = "console";
         console.url = "console";
         console.war = "console.war";
-        AppDTO serverApp = new AppDTO();
-        serverApp.name = "artemis";
-        serverApp.url = "artemis";
-        serverApp.war = "artemis.war";
         bindingDTO.addApp(branding);
         bindingDTO.addApp(plugin);
         bindingDTO.addApp(console);
-        bindingDTO.addApp(serverApp);
         webServerDTO.addBinding(bindingDTO);
         ActiveMQSecurityManager securityManager = server.getActiveMQServer().getSecurityManager();
         ManagementContextDTO managementDTO = new ManagementContextDTO();
