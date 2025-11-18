@@ -8,11 +8,18 @@ services:
     ports:
       - "61616:61616"
       - "61617:61617"
+      - "61619:61619"
+      - "61618:61618"
       - "8161:8161"
       - "1099:1099"
       - "1100:1100"
+      - "8162:8162"
+      - "1088:1088"
+      - "1105:1105"
     volumes:
       - ./broker:/opt/artemis/broker
+      - ./broker2:/opt/artemis/broker2
     environment:
       - ARTEMIS_USERNAME=admin
       - ARTEMIS_PASSWORD=admin
+

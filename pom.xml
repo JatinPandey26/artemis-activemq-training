@@ -20,6 +20,8 @@
     <module>ConsumerPriority</module>
       <module>ssl</module>
       <module>openLdap</module>
+      <module>bridges</module>
+      <module>load-test</module>
   </modules>
 
   <properties>

@@ -110,7 +110,7 @@ public class DivertingExample
             Session session = connection.createSession(false, Session.AUTO_ACKNOWLEDGE);
 
             // 🔹 Step 5: Create a queue reference
-            Queue queue = session.createQueue("orders");
+            Queue queue = session.createQueue("marketing");
 
             // 🔹 Step 6: Create producer
             MessageProducer producer = session.createProducer(queue);

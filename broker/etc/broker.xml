@@ -219,8 +219,8 @@ under the License.
 
             <message-counter-history-day-limit>10</message-counter-history-day-limit>
             <address-full-policy>PAGE</address-full-policy>
-            <auto-create-queues>true</auto-create-queues>
-            <auto-create-addresses>true</auto-create-addresses>
+            <auto-create-queues>false</auto-create-queues>
+            <auto-create-addresses>false</auto-create-addresses>
             <auto-delete-queues>false</auto-delete-queues>
             <auto-delete-addresses>false</auto-delete-addresses>
 
@@ -255,28 +255,8 @@ under the License.
                <queue name="ExpiryQueue" />
             </anycast>
          </address>
-         <address name="orders">
-            <anycast>
-               <queue name="orders"/>
-            </anycast>
-         </address>
-
-         <address name="filteredOrders">
-            <anycast>
-               <queue name="filteredOrdersQueue"/>
-            </anycast>
-         </address>
 
       </addresses>
-
-      <diverts>
-         <divert name="FilterDivert">
-            <address>orders</address>
-            <forwarding-address>filteredOrders</forwarding-address>
-            <exclusive>true</exclusive>
-            <filter string="region='US'"/>
-         </divert>
-      </diverts>
 
 
 
@@ -293,6 +273,32 @@ under the License.
          </broker-plugin>
       </broker-plugins>
       -->
+
+      <bridges>
+         <bridge name="my-bridge">
+            <queue-name>pqueue</queue-name>
+            <forwarding-address>tqueue</forwarding-address>
+            <retry-interval>1000</retry-interval>
+            <retry-interval-multiplier>1.0</retry-interval-multiplier>
+            <initial-connect-attempts>-1</initial-connect-attempts>
+            <reconnect-attempts>-1</reconnect-attempts>
+            <failover-on-server-shutdown>false</failover-on-server-shutdown>
+            <use-duplicate-detection>true</use-duplicate-detection>
+            <confirmation-window-size>10000000</confirmation-window-size>
+            <user>admin</user>
+            <password>admin</password>
+            <routing-type>PASS</routing-type>
+            <static-connectors>
+               <connector-ref>remote-connector</connector-ref>
+            </static-connectors>
+         </bridge>
+      </bridges>
+
+
+
+      <connectors>
+         <connector name="remote-connector">tcp://0.0.0.0:61618</connector>
+      </connectors>
 
    </core>
 </configuration>
